@@ -29,7 +29,7 @@
 
     <div class="max-w-4xl mx-auto space-y-16">
 
-        <!-- PDF 第 1 页：封面与总体定位 -->
+        <!-- PDF 第 1 页：封面与总体定位（优化标签在一排显示） -->
         <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8">
             <div class="space-y-3">
                 <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
@@ -42,12 +42,13 @@
                 以声音表达品牌内涵 · 以专业掌控千人盛典 · 以多元演艺点亮舞台
             </p>
 
-            <div class="flex flex-wrap justify-center gap-2 pt-2">
-                <span class="px-4 py-1.5 rounded-full text-xs gold-badge">商务峰会 Executive Summit</span>
-                <span class="px-4 py-1.5 rounded-full text-xs gold-badge">品牌发布 Brand Release</span>
-                <span class="px-4 py-1.5 rounded-full text-xs gold-badge">歌艺表演 Vocal Artist</span>
-                <span class="px-4 py-1.5 rounded-full text-xs gold-badge">婚礼主持 Wedding Gala</span>
-                <span class="px-4 py-1.5 rounded-full text-xs gold-badge">高端访谈 Media Dialogue</span>
+            <!-- 优化：使用更紧凑优美的间距，确保 5 个标签完美同行显示 -->
+            <div class="flex flex-wrap justify-center items-center gap-2 pt-2">
+                <span class="px-3 py-1.5 rounded-full text-xs gold-badge">商务峰会 Executive Summit</span>
+                <span class="px-3 py-1.5 rounded-full text-xs gold-badge">品牌发布 Brand Release</span>
+                <span class="px-3 py-1.5 rounded-full text-xs gold-badge">歌艺表演 Vocal Artist</span>
+                <span class="px-3 py-1.5 rounded-full text-xs gold-badge">婚礼主持 Wedding Gala</span>
+                <span class="px-3 py-1.5 rounded-full text-xs gold-badge">高端访谈 Media Dialogue</span>
             </div>
 
             <div class="pt-6 border-t border-gray-800/80 max-w-lg mx-auto grid grid-cols-2 gap-4 text-left text-sm">
@@ -62,7 +63,7 @@
             </div>
         </section>
 
-        <!-- PDF 第 2 页：主持人概览与核心能力（全新左右双栏构图：左侧文字与指标，右侧完整独立展示正装照 avatar2.jpg） -->
+        <!-- PDF 第 2 页：主持人概览与核心能力 -->
         <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
             <div class="text-center space-y-1">
                 <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">主持人概览</h2>
@@ -99,7 +100,7 @@
                     </div>
                 </div>
 
-                <!-- 右侧：使用 avatar2.jpg 正装照独立呈现，100% 完整可见 -->
+                <!-- 右侧：正装照 avatar2.jpg 独立呈现 -->
                 <div class="md:col-span-5 flex justify-center">
                     <div class="w-full max-w-[280px] h-[380px] sm:h-[420px] rounded-2xl overflow-hidden gold-border shadow-2xl bg-[#080c14] p-2">
                         <img src="avatar2.jpg" alt="Vivi 主持人正装照" class="w-full h-full object-cover rounded-xl object-top">
