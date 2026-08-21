@@ -3,7 +3,7 @@ const profileData = {
     name: "Vivi",
     title: "资深商务主持人 & 多维舞台演艺人",
     subtitle: "以声音表达品牌内涵 · 以专业掌控千人盛典 · 以多元演艺点亮舞台",
-    avatar: "avatar2.jpg", // 💡 换头像只需在这里改图片名字
+    avatar: "avatar.jpg", // 💡 换头像只需在这里改图片名字
     
     height: "175cm",
     weight: "60kg",
