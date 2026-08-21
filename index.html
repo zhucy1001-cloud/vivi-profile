@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +22,11 @@
             background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.02));
             border: 1px solid rgba(212, 175, 55, 0.4);
             color: #d4af37;
+            transition: all 0.3s ease;
+        }
+        .gold-badge:hover {
+            background: rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -29,7 +34,7 @@
 
     <div class="max-w-4xl mx-auto space-y-16">
 
-        <!-- PDF 第 1 页：封面与总体定位（优化手机端标题换行，完美分布在两行） -->
+        <!-- PDF 第 1 页：封面与总体定位（标签增加锚点跳转） -->
         <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8">
             <div class="space-y-3">
                 <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
@@ -42,16 +47,16 @@
                 以声音表达品牌内涵 · 以专业掌控千人盛典 · 以多元演艺点亮舞台
             </p>
 
-            <!-- 标签两行排布 -->
+            <!-- 5个标签：点击可分别平滑跳转到对应实况区块 -->
             <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1">
                 <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3.5 py-1.5 rounded-full text-xs gold-badge">商务峰会 Executive Summit</span>
-                    <span class="px-3.5 py-1.5 rounded-full text-xs gold-badge">品牌发布 Brand Release</span>
-                    <span class="px-3.5 py-1.5 rounded-full text-xs gold-badge">歌艺表演 Vocal Artist</span>
+                    <a href="#case-business" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">商务峰会 Executive Summit</a>
+                    <a href="#case-auto" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">品牌发布 Brand Release</a>
+                    <a href="#case-vocal" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">歌艺表演 Vocal Artist</a>
                 </div>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3.5 py-1.5 rounded-full text-xs gold-badge">婚礼主持 Wedding Gala</span>
-                    <span class="px-3.5 py-1.5 rounded-full text-xs gold-badge">高端访谈 Media Dialogue</span>
+                    <a href="#case-wedding" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">婚礼主持 Wedding Gala</a>
+                    <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">高端访谈 Media Dialogue</a>
                 </div>
             </div>
 
@@ -141,17 +146,17 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3">
+                <div id="case-business" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3">
                     <h3 class="font-bold gold-text text-base">深耕商务主持</h3>
                     <p class="text-[10px] text-gray-400 uppercase tracking-wider">EXECUTIVE & BUSINESS MODERATION</p>
                     <p class="text-xs text-gray-300 leading-relaxed">擅长汽车新品发布、高端政企论坛、颁奖盛典与品牌晚宴。庄重得体而不失灵动，精准传达品牌核心价值，营造高端奢华的现场氛围。</p>
                 </div>
-                <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3">
+                <div id="case-vocal" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3">
                     <h3 class="font-bold gold-text text-base">歌艺表演特长</h3>
                     <p class="text-[10px] text-gray-400 uppercase tracking-wider">VOCAL PERFORMANCE & SINGING</p>
                     <p class="text-xs text-gray-300 leading-relaxed">具备专业声乐演唱实力，音色优美富有感染力。可在主持之余担当盛典开场演唱、压轴献唱或主题演出，为活动带来出彩的视听高潮。</p>
                 </div>
-                <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3">
+                <div id="case-wedding" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3">
                     <h3 class="font-bold gold-text text-base">浪漫婚礼主持</h3>
                     <p class="text-[10px] text-gray-400 uppercase tracking-wider">WEDDING CEREMONY HOSTING</p>
                     <p class="text-xs text-gray-300 leading-relaxed">精通高雅浪漫的婚礼仪式主持，温情优雅的控场风格与真挚情感表达，注重仪式感与氛围营造，为新人打造梦幻难忘的高品质婚礼盛典。</p>
@@ -167,8 +172,8 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 案例 1 -->
-                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
+                <!-- 案例 1：对应品牌发布 -->
+                <div id="case-auto" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
                     <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
                         <img src="event1.jpg" alt="汽车发布会" class="w-full h-full object-cover">
                     </div>
@@ -224,8 +229,8 @@
                     </div>
                 </div>
 
-                <!-- 案例 4 -->
-                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
+                <!-- 案例 4：对应高端访谈 -->
+                <div id="case-talk" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
                     <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
                         <img src="event4.jpg" alt="政企培训" class="w-full h-full object-cover">
                     </div>
