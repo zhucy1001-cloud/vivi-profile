@@ -23,15 +23,6 @@
             border: 1px solid rgba(212, 175, 55, 0.4);
             color: #d4af37;
         }
-        /* 照片丝滑过渡效果：边缘虚化与背景融合 */
-        .smooth-fade-img {
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%),
-                        linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-            mask-composite: intersect;
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%),
-                                linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-            -webkit-mask-composite: source-in;
-        }
     </style>
 </head>
 <body class="py-12 px-4 sm:px-6 lg:px-8">
@@ -71,66 +62,66 @@
             </div>
         </section>
 
-        <!-- PDF 第 2 页：主持人概览与核心能力（照片丝滑过渡效果） -->
-        <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
-            <div class="text-center space-y-1">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">主持人概览</h2>
-                <p class="text-xs gold-text tracking-[0.2em] uppercase">HOST PROFILE & METRICS</p>
+        <!-- PDF 第 2 页：主持人概览与核心能力（照片作为背景无缝衔接） -->
+        <section class="relative gold-border rounded-3xl overflow-hidden shadow-2xl">
+            <!-- 背景大图与丝滑无缝渐变遮罩 -->
+            <div class="absolute inset-0 z-0">
+                <img src="avatar.jpg" alt="Vivi 背景" class="w-full h-full object-cover object-center filter brightness-90">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#080c14] via-[#080c14]/90 to-[#080c14]/70 sm:via-[#080c14]/85 sm:to-[#080c14]/60"></div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div class="space-y-6">
+
+            <!-- 内容区 -->
+            <div class="relative z-10 p-8 sm:p-12 space-y-10">
+                <div class="text-center space-y-1">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">主持人概览</h2>
+                    <p class="text-xs gold-text tracking-[0.2em] uppercase">HOST PROFILE & METRICS</p>
+                </div>
+                
+                <div class="max-w-xl space-y-6">
                     <div>
                         <span class="text-xl font-bold text-white">Vivi</span>
                         <span class="text-xs gold-text uppercase ml-2 px-2 py-0.5 rounded gold-badge">资深商务主持人/多维演艺人</span>
                     </div>
-                    <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                    <p class="text-sm sm:text-base text-gray-200 leading-relaxed drop-shadow">
                         深耕高端主持与演艺领域，具备175cm高挑九头身优雅台风。沉稳从容的控场气场与深厚的歌艺表演功底相结合，为每一场盛典注入独特艺术价值。
                     </p>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
+                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]/80 backdrop-blur-sm">
                             <div class="text-2xl font-bold gold-text">175cm</div>
                             <div class="text-xs text-gray-400 mt-1">身高 Height</div>
                         </div>
-                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
+                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]/80 backdrop-blur-sm">
                             <div class="text-2xl font-bold gold-text">60kg</div>
                             <div class="text-xs text-gray-400 mt-1">体重 Weight</div>
                         </div>
-                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
+                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]/80 backdrop-blur-sm">
                             <div class="text-2xl font-bold gold-text">500+</div>
                             <div class="text-xs text-gray-400 mt-1">主持场次 Events</div>
                         </div>
-                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
+                        <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]/80 backdrop-blur-sm">
                             <div class="text-2xl font-bold gold-text">99.8%</div>
                             <div class="text-xs text-gray-400 mt-1">满意度 Satisfaction</div>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center">
-                    <!-- 带有微发光阴影与丝滑边缘渐变过渡的照片容器 -->
-                    <div class="w-64 h-80 sm:w-72 sm:h-96 relative flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0d1527] via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <img src="avatar.jpg" alt="Vivi 主持人形象照" class="w-full h-full object-cover rounded-2xl shadow-[0_0_30px_rgba(212,175,55,0.15)] smooth-fade-img">
-                    </div>
-                </div>
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-800">
-                <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2">
-                    <h4 class="font-bold text-white text-sm gold-text">典雅台风与强劲气场 Elegant Presence</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">175cm身高搭配优雅身姿，声音圆润大气，轻松把控千人盛典</p>
-                </div>
-                <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2">
-                    <h4 class="font-bold text-white text-sm gold-text">声艺兼备多维演艺 Versatile Vocal Talent</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">精通专业主持、深情歌唱与仪式演艺，可承接特邀演唱与表演环节</p>
-                </div>
-                <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2">
-                    <h4 class="font-bold text-white text-sm gold-text">敏捷应变控场 Masterful Control</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">极强突发状况处理与气氛调控能力，确保盛典流程零瑕疵推进</p>
-                </div>
-                <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2">
-                    <h4 class="font-bold text-white text-sm gold-text">高品质主持文案 Custom Scripting</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">精准理解品牌调性，定制撰写高雅流畅的主持串词与嘉宾访谈提纲</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-700/60">
+                    <div class="gold-border p-5 rounded-2xl bg-[#080c14]/80 backdrop-blur-sm space-y-2">
+                        <h4 class="font-bold text-white text-sm gold-text">典雅台风与强劲气场 Elegant Presence</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">175cm身高搭配优雅身姿，声音圆润大气，轻松把控千人盛典</p>
+                    </div>
+                    <div class="gold-border p-5 rounded-2xl bg-[#080c14]/80 backdrop-blur-sm space-y-2">
+                        <h4 class="font-bold text-white text-sm gold-text">声艺兼备多维演艺 Versatile Vocal Talent</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">精通专业主持、深情歌唱与仪式演艺，可承接特邀演唱与表演环节</p>
+                    </div>
+                    <div class="gold-border p-5 rounded-2xl bg-[#080c14]/80 backdrop-blur-sm space-y-2">
+                        <h4 class="font-bold text-white text-sm gold-text">敏捷应变控场 Masterful Control</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">极强突发状况处理与气氛调控能力，确保盛典流程零瑕疵推进</p>
+                    </div>
+                    <div class="gold-border p-5 rounded-2xl bg-[#080c14]/80 backdrop-blur-sm space-y-2">
+                        <h4 class="font-bold text-white text-sm gold-text">高品质主持文案 Custom Scripting</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">精准理解品牌调性，定制撰写高雅流畅的主持串词与嘉宾访谈提纲</p>
+                    </div>
                 </div>
             </div>
         </section>
