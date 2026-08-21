@@ -23,11 +23,11 @@
             border: 1px solid rgba(212, 175, 55, 0.4);
             color: #d4af37;
         }
-        /* 半透明毛玻璃卡片背景，既能垫住文字看清，又能让背景主持人优雅透出 */
+        /* 高端半透明毛玻璃卡片背景 */
         .glass-card {
             background: rgba(13, 21, 39, 0.82);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.35);
         }
     </style>
@@ -69,25 +69,25 @@
             </div>
         </section>
 
-        <!-- PDF 第 2 页：主持人概览与核心能力（照片作为背景，卡片毛玻璃错落排布，背景主持人完美透出） -->
+        <!-- PDF 第 2 页：主持人概览与核心能力（长屏纵向沉浸式设计，avatar2.jpg 作为正装照背景完美无缝衔接） -->
         <section class="relative gold-border rounded-3xl overflow-hidden shadow-2xl">
-            <!-- 全屏背景大图与多层艺术渐变暗色遮罩 -->
+            <!-- 背景大图：使用 avatar2.jpg 作为正装照背景，多层渐变实现与暗夜蓝丝滑过渡 -->
             <div class="absolute inset-0 z-0">
-                <img src="avatar.jpg" alt="Vivi 背景" class="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05]">
-                <!-- 上下左右渐变融合遮罩，确保头部、身体边缘和卡片周边完美过渡 -->
-                <div class="absolute inset-0 bg-gradient-to-b from-[#080c14]/90 via-[#080c14]/65 to-[#080c14]/95"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-[#080c14]/80 via-transparent to-[#080c14]/80"></div>
+                <img src="avatar2.jpg" alt="Vivi 正装照背景" class="w-full h-full object-cover object-top filter brightness-[0.85] contrast-[1.05]">
+                <!-- 上下左右完美渐变融合遮罩，保证照片完整展示且上下边缘自然消融 -->
+                <div class="absolute inset-0 bg-gradient-to-b from-[#080c14]/95 via-[#080c14]/50 to-[#080c14]/95"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#080c14]/85 via-transparent to-[#080c14]/85"></div>
             </div>
 
-            <!-- 前景内容区 -->
-            <div class="relative z-10 p-6 sm:p-12 space-y-10">
-                <div class="text-center space-y-1">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">主持人概览</h2>
-                    <p class="text-xs gold-text tracking-[0.2em] uppercase">HOST PROFILE & METRICS</p>
+            <!-- 前景内容区（加长版面，布局更加舒展优雅） -->
+            <div class="relative z-10 p-8 sm:p-16 space-y-12">
+                <div class="text-center space-y-2">
+                    <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-wide">主持人概览</h2>
+                    <p class="text-xs gold-text tracking-[0.25em] uppercase">HOST PROFILE & METRICS</p>
                 </div>
                 
                 <!-- 顶部文字简介与标签 -->
-                <div class="max-w-2xl mx-auto text-center space-y-4 glass-card p-6 sm:p-8 rounded-2xl shadow-xl">
+                <div class="max-w-2xl mx-auto text-center space-y-4 glass-card p-6 sm:p-8 rounded-2xl shadow-2xl">
                     <div>
                         <span class="text-xl font-bold text-white">Vivi</span>
                         <span class="text-xs gold-text uppercase ml-2 px-2.5 py-1 rounded gold-badge">资深商务主持人/多维演艺人</span>
@@ -97,41 +97,41 @@
                     </p>
                 </div>
 
-                <!-- 4项核心指标网格（毛玻璃卡片，背景身姿隐约透出） -->
+                <!-- 4项核心指标网格 -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div class="glass-card p-4 rounded-2xl text-center shadow-lg">
+                    <div class="glass-card p-4 sm:p-5 rounded-2xl text-center shadow-xl">
                         <div class="text-xl sm:text-2xl font-bold gold-text">175cm</div>
                         <div class="text-xs text-gray-300 mt-1">身高 Height</div>
                     </div>
-                    <div class="glass-card p-4 rounded-2xl text-center shadow-lg">
+                    <div class="glass-card p-4 sm:p-5 rounded-2xl text-center shadow-xl">
                         <div class="text-xl sm:text-2xl font-bold gold-text">60kg</div>
                         <div class="text-xs text-gray-300 mt-1">体重 Weight</div>
                     </div>
-                    <div class="glass-card p-4 rounded-2xl text-center shadow-lg">
+                    <div class="glass-card p-4 sm:p-5 rounded-2xl text-center shadow-xl">
                         <div class="text-xl sm:text-2xl font-bold gold-text">500+</div>
                         <div class="text-xs text-gray-300 mt-1">主持场次 Events</div>
                     </div>
-                    <div class="glass-card p-4 rounded-2xl text-center shadow-lg">
+                    <div class="glass-card p-4 sm:p-5 rounded-2xl text-center shadow-xl">
                         <div class="text-xl sm:text-2xl font-bold gold-text">99.8%</div>
                         <div class="text-xs text-gray-300 mt-1">满意度 Satisfaction</div>
                     </div>
                 </div>
 
-                <!-- 4大特长卡片（半透明错落排列） -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div class="glass-card p-5 rounded-2xl space-y-2 shadow-lg">
+                <!-- 4大特长卡片 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                    <div class="glass-card p-6 rounded-2xl space-y-2 shadow-xl">
                         <h4 class="font-bold text-white text-sm gold-text">典雅台风与强劲气场 Elegant Presence</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">175cm身高搭配优雅身姿，声音圆润大气，轻松把控千人盛典</p>
                     </div>
-                    <div class="glass-card p-5 rounded-2xl space-y-2 shadow-lg">
+                    <div class="glass-card p-6 rounded-2xl space-y-2 shadow-xl">
                         <h4 class="font-bold text-white text-sm gold-text">声艺兼备多维演艺 Versatile Vocal Talent</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">精通专业主持、深情歌唱与仪式演艺，可承接特邀演唱与表演环节</p>
                     </div>
-                    <div class="glass-card p-5 rounded-2xl space-y-2 shadow-lg">
+                    <div class="glass-card p-6 rounded-2xl space-y-2 shadow-xl">
                         <h4 class="font-bold text-white text-sm gold-text">敏捷应变控场 Masterful Control</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">极强突发状况处理与气氛调控能力，确保盛典流程零瑕疵推进</p>
                     </div>
-                    <div class="glass-card p-5 rounded-2xl space-y-2 shadow-lg">
+                    <div class="glass-card p-6 rounded-2xl space-y-2 shadow-xl">
                         <h4 class="font-bold text-white text-sm gold-text">高品质主持文案 Custom Scripting</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">精准理解品牌调性，定制撰写高雅流畅的主持串词与嘉宾访谈提纲</p>
                     </div>
