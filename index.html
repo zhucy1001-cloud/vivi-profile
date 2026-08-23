@@ -161,7 +161,7 @@
             </div>
         </section>
 
-        <!-- 第 4 部分：活动实况案例集（静态完整展示，支持双图对照） -->
+        <!-- 第 4 部分：活动实况案例集（独立双框展示：主持人特写照卡片 & 活动现场全景照卡片） -->
         <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
             <div class="text-center space-y-1">
                 <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">活动实况案例</h2>
@@ -170,102 +170,233 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <!-- 案例 1：奥迪品牌发布 -->
-                <div id="case-auto" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
-                    <div class="grid grid-cols-2 gap-1 bg-gray-900">
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event1.jpg" alt="奥迪发布特写" class="w-full h-full object-cover"></div>
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event1现场.jpg" alt="奥迪发布现场" class="w-full h-full object-cover"></div>
+                <!-- 1.1 案例 1：奥迪汽车发布 - 主持人特写卡片 -->
+                <div id="case-auto" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event1.jpg" alt="奥迪汽车品牌发布 - 主持人特写" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">AUTOMOTIVE LAUNCH · HOSTESS FOCUS</div>
+                                <h4 class="font-bold text-white text-lg">奥迪汽车品牌发布与鉴赏会（特写风采）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">一身优雅白色礼服亮相奥迪品牌发布现场。以纯正流利的主持表达与高端利落的形象，完美诠释国际豪华汽车品牌的科技感与高贵气质。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>精准把握产品亮点与车企品牌内涵 Brand Vision</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>掌控科技发布会高质感节奏 Professional Pace</span></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">AUTOMOTIVE & LUXURY BRAND LAUNCH</div>
-                            <h4 class="font-bold text-white text-lg">奥迪汽车品牌发布与鉴赏会</h4>
-                            <p class="text-xs text-gray-300 mt-2 leading-relaxed">一身优雅白色礼服亮相奥迪品牌发布现场。以纯正流利的主持表达与高端利落的形象，完美诠释国际豪华汽车品牌的科技感与高贵气质。</p>
-                        </div>
-                        <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>精准把握产品亮点与车企品牌内涵 Brand Vision</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>掌控科技发布会高质感节奏 Professional Pace</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>与高管嘉宾及车主现场流畅互动 Guest Engagement</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 案例 2：企业盛典 -->
-                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
-                    <div class="grid grid-cols-2 gap-1 bg-gray-900">
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event2.jpg" alt="企业盛典特写" class="w-full h-full object-cover"></div>
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event2现场.jpg" alt="企业盛典现场" class="w-full h-full object-cover"></div>
-                    </div>
-                    <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">CORPORATE OPENING CEREMONY</div>
-                            <h4 class="font-bold text-white text-lg">企业盛典与开业剪彩仪式</h4>
-                            <p class="text-xs text-gray-300 mt-2 leading-relaxed">身着香槟金色高定礼服气场全开，搭档男主持默契配合。从隆重的开幕致辞到剪彩仪式，全流程展现极其从容自信的台风与盛典感染力。</p>
-                        </div>
-                        <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>驾驭千人户外盛典热烈欢庆气氛 Festive Atmosphere</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>双主持搭档控场，提调盛典高潮 Duo-Host Synergy</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>庄重得体的仪式感引导与剪彩把控 Ceremonial Control</span></div>
-                        </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人特写视角</span>
                     </div>
                 </div>
 
-                <!-- 案例 3：圣诞晚宴 -->
-                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
-                    <div class="grid grid-cols-2 gap-1 bg-gray-900">
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event3.jpg" alt="圣诞晚宴特写" class="w-full h-full object-cover"></div>
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event3现场.jpg" alt="圣诞晚宴现场" class="w-full h-full object-cover"></div>
+                <!-- 1.2 案例 1：奥迪汽车发布 - 活动现场全景卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event1现场.jpg" alt="奥迪汽车品牌发布 - 活动全景" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">AUTOMOTIVE LAUNCH · SCENE OVERVIEW</div>
+                                <h4 class="font-bold text-white text-lg">奥迪汽车品牌发布与鉴赏会（全景现场）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">高端大气的高档商场发布会全景现场。展车与舞台交相辉映，人气爆棚，全方位展现强大的活动统筹与现场互动热度。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>商场高人气全景掌控与热烈氛围调动</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>与高管嘉宾及车主现场流畅互动 Guest Engagement</span></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">GALA DINNER & THEMED CELEBRATION</div>
-                            <h4 class="font-bold text-white text-lg">国际大酒店圣诞主题盛宴</h4>
-                            <p class="text-xs text-gray-300 mt-2 leading-relaxed">主持五星级国际大酒店高端圣诞晚宴。以极其亲和温暖的姿态深入台前，与亲子家庭及现场嘉宾进行抽奖互动，调动全场欢快热烈的节日氛围。</p>
-                        </div>
-                        <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>极强的舞台亲和力与现场调动能力 Stage Affinity</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>抽奖互动与环节衔接自然流畅 Interactive Raffles</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>营造温馨高雅的节日尊享体验 Luxury Hospitality</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 案例 4：政企培训 -->
-                <div id="case-talk" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col">
-                    <div class="grid grid-cols-2 gap-1 bg-gray-900">
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event4.jpg" alt="政企培训特写" class="w-full h-full object-cover"></div>
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event4现场.jpg" alt="政企培训现场" class="w-full h-full object-cover"></div>
-                    </div>
-                    <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">GOVERNMENT & CULTURAL EVENTS</div>
-                            <h4 class="font-bold text-white text-lg">政企培训与专题研讨会议</h4>
-                            <p class="text-xs text-gray-300 mt-2 leading-relaxed">知性干练主持商务会议与专题培训，如常州市商务局主办的直播电商人才培育工程，熟练把控学术与政企研讨氛围。</p>
-                        </div>
-                        <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>熟练掌握政企商务会议流程与学术研讨气氛</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>展现主持人多变且灵活的控场风格</span></div>
-                        </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">🌐 盛典全景现场视角</span>
                     </div>
                 </div>
 
-                <!-- 案例 5（新增）：文旅品牌活动 -->
-                <div id="case-cultural" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col md:col-span-2">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 bg-gray-900">
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event5.jpg" alt="文旅活动特写" class="w-full h-full object-cover"></div>
-                        <div class="aspect-[3/2] overflow-hidden"><img src="event5现场.jpg" alt="文旅活动现场" class="w-full h-full object-cover"></div>
+                <!-- 2.1 案例 2：企业盛典与开业 - 主持人特写卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event2.jpg" alt="企业盛典与开业 - 主持人特写" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">OPENING CEREMONY · HOSTESS FOCUS</div>
+                                <h4 class="font-bold text-white text-lg">企业盛典与开业剪彩仪式（特写风采）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">身着香槟金色高定礼服气场全开，搭档男主持默契配合。全流程展现极其从容自信的台风与盛典感染力。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>双主持搭档默契控场，提调盛典高潮 Duo-Host Synergy</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>庄重得体的仪式感引导与发言把控</span></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">CULTURAL & FESTIVAL TOURISM</div>
-                            <h4 class="font-bold text-white text-lg">文旅品牌节庆与亲子互动活动</h4>
-                            <p class="text-xs text-gray-300 mt-2 leading-relaxed">完美驾驭“童心未泯·粽情守护”等大型户外文旅节日活动。通过充满亲和力的现场互动与趣味游戏，将传统节日与欢乐氛围推向高潮。</p>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人特写视角</span>
+                    </div>
+                </div>
+
+                <!-- 2.2 案例 2：企业盛典与开业 - 活动现场全景卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event2现场.jpg" alt="企业盛典与开业 - 活动全景" class="w-full h-full object-cover">
                         </div>
-                        <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5 sm:grid sm:grid-cols-3 sm:gap-4">
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>精准活跃文旅户外节庆的欢快热烈气氛</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>擅长与现场亲子家庭进行零距离趣味互动</span></div>
-                            <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>高情商应变与全场节奏把控力</span></div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">OPENING CEREMONY · SCENE OVERVIEW</div>
+                                <h4 class="font-bold text-white text-lg">企业盛典与开业剪彩仪式（全景现场）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">宏大喜庆的户外开业盛典现场。红毯、舞狮、整齐就座的嘉宾与热烈隆重的仪式氛围相得益彰。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>驾驭千人户外盛典宏大欢庆气氛 Festive Atmosphere</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>大型剪彩与锣鼓舞狮流程完美衔接</span></div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">🌐 盛典全景现场视角</span>
+                    </div>
+                </div>
+
+                <!-- 3.1 案例 3：圣诞主题盛宴 - 主持人特写卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event3.jpg" alt="圣诞主题盛宴 - 主持人特写" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">GALA DINNER · HOSTESS FOCUS</div>
+                                <h4 class="font-bold text-white text-lg">国际大酒店圣诞主题盛宴（特写风采）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">主持五星级国际大酒店高端圣诞晚宴。以极其亲和温暖的姿态深入台前，与小朋友及现场嘉宾欢快互动。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>极强的舞台亲和力与现场调动能力 Stage Affinity</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>抽奖互动与环节衔接自然流畅 Interactive Raffles</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人特写视角</span>
+                    </div>
+                </div>
+
+                <!-- 3.2 案例 3：圣诞主题盛宴 - 活动现场全景卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event3现场.jpg" alt="圣诞主题盛宴 - 活动全景" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">GALA DINNER · SCENE OVERVIEW</div>
+                                <h4 class="font-bold text-white text-lg">国际大酒店圣诞主题盛宴（全景现场）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">五星级酒店宴会厅内温馨高雅的节日布景。精致的晚宴长桌与圣诞装饰，完美营造出尊贵欢快的节日氛围。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>营造温馨高雅的五星级节日尊享体验 Luxury Hospitality</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>宴会空间布置与全场欢庆节奏完美融合</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">🌐 盛典全景现场视角</span>
+                    </div>
+                </div>
+
+                <!-- 4.1 案例 4：政企培训 - 主持人特写卡片 -->
+                <div id="case-talk" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event4.jpg" alt="政企培训 - 主持人特写" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">GOVERNMENT & TRAINING · HOSTESS FOCUS</div>
+                                <h4 class="font-bold text-white text-lg">政企培训与专题研讨会议（特写风采）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">知性干练主持商务会议与专题培训，如常州市商务局主办的直播电商人才培育工程，展现专业严谨的学术与政企风范。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>熟练掌握政企商务会议流程与学术研讨气氛</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>知性干练的表达与专业控场风格</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人特写视角</span>
+                    </div>
+                </div>
+
+                <!-- 4.2 案例 4：政企培训 - 活动现场全景卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event4现场.jpg" alt="政企培训 - 活动全景" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">GOVERNMENT & TRAINING · SCENE OVERVIEW</div>
+                                <h4 class="font-bold text-white text-lg">政企培训与专题研讨会议（全景现场）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">座无虚席的室内会议大厅全景。参会代表专注聆听，大型蓝底投影与会务布置呈现出严谨高规格的学术研讨氛围。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>高规格室内政企培训会议的全流程把控</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>稳重得体的会务节奏与秩序维护</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">🌐 盛典全景现场视角</span>
+                    </div>
+                </div>
+
+                <!-- 5.1 案例 5（新增）：文旅品牌活动 - 主持人特写卡片 -->
+                <div id="case-cultural" class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event5.jpg" alt="文旅品牌活动 - 主持人特写" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">CULTURAL TOURISM · HOSTESS FOCUS</div>
+                                <h4 class="font-bold text-white text-lg">文旅品牌节庆与亲子互动活动（特写风采）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">完美驾驭“童心未泯·粽情守护”等大型户外文旅节日活动。优雅亲和的台风，让传统节庆充满欢声笑语与温情。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>精准活跃文旅户外节庆的欢快热烈气氛</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>亲和力十足的现场亲子互动表达</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人特写视角</span>
+                    </div>
+                </div>
+
+                <!-- 5.2 案例 5（新增）：文旅品牌活动 - 活动现场全景卡片 -->
+                <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                    <div>
+                        <div class="w-full aspect-[3/2] bg-gray-900 overflow-hidden">
+                            <img src="event5现场.jpg" alt="文旅品牌活动 - 活动全景" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="text-xs gold-text uppercase tracking-widest font-semibold mb-1">CULTURAL TOURISM · SCENE OVERVIEW</div>
+                                <h4 class="font-bold text-white text-lg">文旅品牌节庆与亲子互动活动（全景现场）</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">充满童趣与端午传统氛围的户外活动现场全景。孩子们积极参与趣味游戏，现场洋溢着温馨、欢乐与祥和的节日气息。</p>
+                            </div>
+                            <div class="text-[11px] text-gray-300 pt-3 border-t border-gray-800 space-y-1.5">
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>户外文旅与亲子互动嘉年华全景把控</span></div>
+                                <div class="flex items-center space-x-2"><span class="gold-text">✓</span> <span>高情商应变与全场欢快节奏的完美调度</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">🌐 盛典全景现场视角</span>
                     </div>
                 </div>
 
