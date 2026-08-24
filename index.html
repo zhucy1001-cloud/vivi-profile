@@ -39,7 +39,6 @@
                 background-color: #080c14 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                /* 关键修复：清除网页模式下的上下边距，防止高度溢出产生空白页 */
                 padding: 0 !important;
                 margin: 0 !important;
             }
@@ -47,11 +46,9 @@
                 display: none !important;
             }
             
-            /* 强制模块独占一页并完美垂直+水平居中的核心类 */
             .print-page-center {
                 page-break-after: always;
                 break-after: page;
-                /* 关键修复：高度从96vh降至90vh，确保加上边框后绝对不会超出单页 */
                 min-height: 90vh;
                 display: flex !important;
                 flex-direction: column;
@@ -62,20 +59,17 @@
                 box-sizing: border-box;
             }
 
-            /* 消除最后一页的强制分页，避免文档末尾多出一张空白页 */
             .print-page-last {
                 page-break-after: auto !important;
                 break-after: auto !important;
             }
             
-            /* 确保常规板块占满可用宽度并防止内部断层 */
             .print-section {
                 width: 100% !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
 
-            /* 针对实况案例框：缩小宽度使其在A4纸上更显精致，且完美居中 */
             .print-case-card {
                 width: 85% !important;
                 margin: 0 auto !important;
@@ -97,33 +91,39 @@
     <!-- 网页主容器（打印时取消板块间的默认高间距） -->
     <div class="max-w-4xl mx-auto space-y-16 print:space-y-0">
 
-        <!-- ==================== 打印第 1 页：封面定位 ==================== -->
+        <!-- ==================== 打印第 1 页：封面定位（自适应竖版海报） ==================== -->
         <div class="print-page-center">
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8">
-                <div class="space-y-3">
+            <!-- 打印时：高度拉长、垂直居中、间距拉大以适应A4竖版 -->
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8 print:flex print:flex-col print:justify-center print:min-h-[85vh] print:space-y-12">
+                
+                <div class="space-y-3 print:space-y-6">
                     <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
                     <h1 class="text-2xl sm:text-5xl font-bold text-white tracking-wide leading-snug sm:leading-tight">
-                        资深商务主持人 <span class="gold-text">&</span><br class="sm:hidden"> 多维舞台演艺人
+                        <!-- 网页端内联显示，打印端强制分两行 -->
+                        <span class="print:block">资深商务主持人 <span class="gold-text">&</span></span>
+                        <br class="sm:hidden print:hidden"> 
+                        <span class="print:block print:mt-4">多维舞台演艺人</span>
                     </h1>
                 </div>
                 
-                <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto tracking-wide leading-relaxed">
+                <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto tracking-wide leading-relaxed print:text-lg">
                     以天籁之声诠释品牌底蕴 · 以大师风范掌控千人盛典 · 以多元美学点亮璀璨舞台
                 </p>
 
-                <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1">
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">商务峰会 Executive Summit</a>
-                        <a href="#case-auto" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">品牌发布 Brand Release</a>
-                        <a href="#case-gala" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">歌艺表演 Vocal Artist</a>
+                <!-- 打印时：标签从横向两排强制改为垂直一列，并放大字号与间距 -->
+                <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1 print:w-full print:max-w-xs print:gap-4 print:pt-6">
+                    <div class="flex flex-wrap justify-center gap-2 print:flex-col print:w-full print:gap-4">
+                        <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">商务峰会 Executive Summit</a>
+                        <a href="#case-auto" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">品牌发布 Brand Release</a>
+                        <a href="#case-gala" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">歌艺表演 Vocal Artist</a>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <a href="#case-wedding" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">婚礼主持 Wedding Gala</a>
-                        <a href="#case-cultural" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">文旅节庆 Cultural Tourism</a>
+                    <div class="flex flex-wrap justify-center gap-2 print:flex-col print:w-full print:gap-4">
+                        <a href="#case-wedding" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">婚礼主持 Wedding Gala</a>
+                        <a href="#case-cultural" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">文旅节庆 Cultural Tourism</a>
                     </div>
                 </div>
 
-                <div class="pt-6 border-t border-gray-800/80 max-w-lg mx-auto grid grid-cols-2 gap-4 text-left text-sm">
+                <div class="pt-6 border-t border-gray-800/80 max-w-lg mx-auto grid grid-cols-2 gap-4 text-left text-sm print:pt-10 print:mt-auto">
                     <div>
                         <div class="text-xs gold-text uppercase tracking-wider">首席司仪 / CHIEF PRESENTER</div>
                         <div class="text-white font-medium mt-1">Vivi (资深商务演艺司仪)</div>
