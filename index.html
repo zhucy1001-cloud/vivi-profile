@@ -28,25 +28,47 @@
             background: rgba(212, 175, 55, 0.25);
             transform: translateY(-2px);
         }
-        /* 打印优化样式：确保打印时背景色和样式完美呈现 */
+
+        /* ==================== 🖨️ A4 纵向打印/导出 PDF 专用优化样式 ==================== */
         @media print {
+            @page {
+                size: A4 portrait; /* 强制纵向 A4 */
+                margin: 10mm;      /* 调整打印页边距，最大化利用页面 */
+            }
             body {
                 background-color: #080c14 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+                color: #e2e8f0 !important;
             }
             .no-print {
                 display: none !important;
+            }
+            /* 防止卡片和主要区块在打印时被跨页腰斩 */
+            section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                margin-bottom: 20px !important;
+            }
+            /* 案例卡片单独防截断 */
+            .gold-border {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            /* 限制打印时图片的高度，防止过大撑坏排版 */
+            img {
+                max-height: 220px !important;
+                object-fit: cover !important;
             }
         }
     </style>
 </head>
 <body class="py-12 px-4 sm:px-6 lg:px-8 relative">
 
-    <!-- 悬浮 PDF 打印/下载按钮（不希望在PDF中显示时可忽略） -->
+    <!-- 悬浮 PDF 打印/下载按钮 -->
     <div class="no-print fixed top-6 right-6 z-50">
         <button onclick="window.print()" class="gold-badge px-4 py-2 rounded-full text-xs font-semibold shadow-lg flex items-center gap-1.5 cursor-pointer bg-[#0d1527]">
-            <span>🖨️ 保存/打印为PDF</span>
+            <span>🖨️ 打印/保存为PDF</span>
         </button>
     </div>
 
@@ -66,12 +88,12 @@
             </p>
 
             <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1">
-                <div class="flex flex-wrap justify-center gap-2">
+                <div class="no-print flex flex-wrap justify-center gap-2">
                     <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">商务峰会 Executive Summit</a>
                     <a href="#case-auto" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">品牌发布 Brand Release</a>
                     <a href="#case-gala" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">歌艺表演 Vocal Artist</a>
                 </div>
-                <div class="flex flex-wrap justify-center gap-2">
+                <div class="no-print flex flex-wrap justify-center gap-2">
                     <a href="#case-wedding" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">婚礼主持 Wedding Gala</a>
                     <a href="#case-cultural" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">文旅节庆 Cultural Tourism</a>
                 </div>
