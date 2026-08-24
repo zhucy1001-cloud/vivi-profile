@@ -18,37 +18,42 @@
         .gold-text {
             color: #d4af37;
         }
+        /* 修复瑕疵1：去除渐变，使用高级半透明纯色，彻底解决 PDF 渲染的横向条纹 Bug */
         .gold-badge {
-            background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.02));
+            background-color: rgba(212, 175, 55, 0.08);
             border: 1px solid rgba(212, 175, 55, 0.4);
             color: #d4af37;
             transition: all 0.3s ease;
         }
         .gold-badge:hover {
-            background: rgba(212, 175, 55, 0.25);
+            background-color: rgba(212, 175, 55, 0.15);
             transform: translateY(-2px);
         }
 
-        /* ==================== 专属 PDF 输出分页与高级留白控制 ==================== */
+        /* ==================== 专属 PDF 输出控制 ==================== */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0 !important; /* 彻底清除浏览器默认白边，接管绝对排版权 */
+                margin: 0 !important; /* 接管绝对排版权 */
             }
             body {
                 background-color: #080c14 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+            /* 修复瑕疵2：彻底关闭打印模式下的大阴影，解决容器边缘出现的深色矩形伪影 */
+            * {
+                box-shadow: none !important;
+            }
             .no-print {
                 display: none !important;
             }
             
-            /* 强制模块独占一页并留出绝对安全边距，彻底拒绝顶边 */
+            /* 强制模块独占一页并留出绝对安全边距 */
             .print-page-center {
                 width: 100% !important;
-                height: 100vh !important; /* 严格绑定一页纸的高度 */
-                padding: 15mm 20mm !important; /* 核心：创造上下15mm、左右20mm的物理安全留白区 */
+                height: 100vh !important; 
+                padding: 12mm 15mm !important; /* 安全呼吸留白 */
                 box-sizing: border-box !important;
                 
                 display: flex !important;
@@ -61,13 +66,11 @@
                 overflow: hidden;
             }
 
-            /* 消除最后一页的多余空白页 */
             .print-page-last {
                 page-break-after: auto !important;
                 break-after: auto !important;
             }
             
-            /* 让内容框自适应填充内部安全区 */
             .print-section {
                 width: 100% !important;
                 margin: 0 !important;
@@ -75,10 +78,9 @@
                 break-inside: avoid;
             }
 
-            /* 针对实况案例框：放大到100%适应页面宽度，显得更加大气 */
+            /* 放大活动案例以适应页面 */
             .print-case-card {
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 88% !important; /* 黄金放大概例，大气且留白优雅 */
                 margin: 0 auto !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
@@ -88,25 +90,22 @@
 </head>
 <body class="py-12 px-4 sm:px-6 lg:px-8 relative print:p-0 print:m-0">
 
-    <!-- 悬浮 PDF 打印/下载按钮（打印时自动隐藏） -->
+    <!-- 悬浮 PDF 打印按钮 -->
     <div class="no-print fixed top-6 right-6 z-50">
         <button onclick="window.print()" class="gold-badge px-4 py-2 rounded-full text-xs font-semibold shadow-lg flex items-center gap-1.5 cursor-pointer bg-[#0d1527]">
             <span>🖨️ 输出为PDF</span>
         </button>
     </div>
 
-    <!-- 网页主容器（打印时取消板块间的默认高间距，交给分页控制） -->
     <div class="max-w-4xl mx-auto space-y-16 print:space-y-0 print:max-w-none">
 
-        <!-- ==================== 打印第 1 页：封面定位（自适应竖版海报） ==================== -->
+        <!-- ==================== 打印第 1 页：封面定位 ==================== -->
         <div class="print-page-center">
-            <!-- 打印时：高度拉长填满安全区，呈现海报级留白 -->
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8 print:flex print:flex-col print:justify-center print:h-full print:space-y-12 print:p-12">
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] text-center space-y-8 print:flex print:flex-col print:justify-center print:h-full print:space-y-12 print:p-12 shadow-2xl">
                 
                 <div class="space-y-3 print:space-y-6">
                     <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
                     <h1 class="text-2xl sm:text-5xl font-bold text-white tracking-wide leading-snug sm:leading-tight">
-                        <!-- 网页端内联显示，打印端强制分两行 -->
                         <span class="print:block">资深商务主持人 <span class="gold-text">&</span></span>
                         <br class="sm:hidden print:hidden"> 
                         <span class="print:block print:mt-4">多维舞台演艺人</span>
@@ -117,7 +116,6 @@
                     以天籁之声诠释品牌底蕴 · 以大师风范掌控千人盛典 · 以多元美学点亮璀璨舞台
                 </p>
 
-                <!-- 打印时：标签从横向强制变为纵向阵列 -->
                 <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1 print:w-full print:max-w-xs print:gap-4 print:pt-6">
                     <div class="flex flex-wrap justify-center gap-2 print:flex-col print:w-full print:gap-4">
                         <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">商务峰会 Executive Summit</a>
@@ -181,13 +179,12 @@
                     </div>
 
                     <div class="md:col-span-5 flex justify-center">
-                        <div class="w-full max-w-[280px] h-[380px] sm:h-[420px] rounded-2xl overflow-hidden gold-border shadow-2xl bg-[#080c14] p-2">
+                        <div class="w-full max-w-[280px] h-[380px] sm:h-[420px] rounded-2xl overflow-hidden gold-border bg-[#080c14] p-2">
                             <img src="avatar.jpg" alt="Vivi 主持人正装照" class="w-full h-full object-cover rounded-xl object-top">
                         </div>
                     </div>
                 </div>
 
-                <!-- 4大特长卡片 -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-800">
                     <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2">
                         <h4 class="font-bold text-white text-sm gold-text">殿堂台风与非凡气场</h4>
@@ -209,53 +206,51 @@
             </section>
         </div>
 
-        <!-- ==================== 打印第 3 页：多元演艺特长 + 核心承诺 ==================== -->
-        <!-- 修改为 print:gap-6 适配纵向高度 -->
-        <div class="print-page-center space-y-8 print:space-y-0 print:gap-6">
+        <!-- ==================== 打印第 3 页：多元演艺特长 + 核心承诺（完美整合为5栏纵向） ==================== -->
+        <div class="print-page-center print:space-y-4">
             
-            <!-- 第 3 部分：多元演艺特长 -->
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10 print:p-8 print:space-y-6">
-                <div class="text-center space-y-1">
+            <!-- 模块 1：演艺特长 -->
+            <!-- 打印时去除包裹框底色，让它看起来是独立的竖版卡片列阵 -->
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10 print:bg-transparent print:border-none print:p-0 print:space-y-4">
+                <div class="text-center space-y-1 print:mb-6">
                     <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide print:text-2xl">多元演艺特长</h2>
                     <p class="text-xs gold-text tracking-[0.2em] uppercase print:text-[10px]">VERSATILE TALENTS & PERFORMANCE</p>
                 </div>
                 
-                <!-- 打印时：强制将网格布局变为1列（垂直排列） -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 print:grid-cols-1 print:gap-4">
-                    <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:p-4 print:space-y-2">
-                        <h3 class="font-bold gold-text text-base print:text-sm">高端商务主持</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 print:grid-cols-1 print:gap-4 print:w-[88%] print:mx-auto">
+                    <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:p-5 print:space-y-2">
+                        <h3 class="font-bold gold-text text-base print:text-[15px]">高端商务主持</h3>
                         <p class="text-[10px] text-gray-400 uppercase tracking-wider">EXECUTIVE & BUSINESS</p>
-                        <p class="text-xs text-gray-300 leading-relaxed print:text-[11px]">专注于奢华车展发布、政企巅峰论坛、荣耀颁奖盛典与名流晚宴。兼具威严庄重与灵动灵气，完美彰显品牌无上价值。</p>
+                        <p class="text-xs text-gray-300 leading-relaxed print:text-xs">专注于奢华车展发布、政企巅峰论坛、荣耀颁奖盛典与名流晚宴。兼具威严庄重与灵动灵气，完美彰显品牌无上价值。</p>
                     </div>
-                    <div id="case-vocal" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:p-4 print:space-y-2">
-                        <h3 class="font-bold gold-text text-base print:text-sm">声乐艺术表演</h3>
+                    <div id="case-vocal" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:p-5 print:space-y-2">
+                        <h3 class="font-bold gold-text text-base print:text-[15px]">声乐艺术表演</h3>
                         <p class="text-[10px] text-gray-400 uppercase tracking-wider">VOCAL PERFORMANCE</p>
-                        <p class="text-xs text-gray-300 leading-relaxed print:text-[11px]">拥有专业级声乐演唱艺术造诣，声线纯净富有磁性。可在盛典中惊艳开场或压轴献唱，为活动升华视听艺术高潮。</p>
+                        <p class="text-xs text-gray-300 leading-relaxed print:text-xs">拥有专业级声乐演唱艺术造诣，声线纯净富有磁性。可在盛典中惊艳开场或压轴献唱，为活动升华视听艺术高潮。</p>
                     </div>
-                    <div id="case-wedding" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:p-4 print:space-y-2">
-                        <h3 class="font-bold gold-text text-base print:text-sm">定制奢华婚礼</h3>
+                    <div id="case-wedding" class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:p-5 print:space-y-2">
+                        <h3 class="font-bold gold-text text-base print:text-[15px]">定制奢华婚礼</h3>
                         <p class="text-[10px] text-gray-400 uppercase tracking-wider">WEDDING CEREMONY</p>
-                        <p class="text-xs text-gray-300 leading-relaxed print:text-[11px]">擅长殿堂级浪漫仪式的艺术化编排与主持。以温润高贵的情感表达雕刻仪式感，为新人筑造永志难忘的梦幻时刻。</p>
+                        <p class="text-xs text-gray-300 leading-relaxed print:text-xs">擅长殿堂级浪漫仪式的艺术化编排与主持。以温润高贵的情感表达雕刻仪式感，为新人筑造永志难忘的梦幻时刻。</p>
                     </div>
                 </div>
             </section>
 
-            <!-- 补充板块：核心优势与服务承诺 -->
-            <section class="print-section gold-border rounded-2xl p-6 sm:p-8 bg-[#0a101d] shadow-xl space-y-6 print:p-8 print:space-y-6">
-                <div class="text-center space-y-1">
-                    <h3 class="text-lg sm:text-xl font-bold text-white tracking-wide print:text-xl">核心优势与服务承诺</h3>
-                    <p class="text-[10px] gold-text tracking-[0.2em] uppercase">CORE ADVANTAGES & COMMITMENT</p>
+            <!-- 模块 2：核心优势 -->
+            <section class="print-section gold-border rounded-2xl p-6 sm:p-8 bg-[#0a101d] shadow-xl space-y-6 print:bg-transparent print:border-none print:p-0 print:space-y-4 print:mt-4">
+                <div class="text-center space-y-1 print:mb-6">
+                    <h3 class="text-lg sm:text-xl font-bold text-white tracking-wide print:text-2xl">核心优势与服务承诺</h3>
+                    <p class="text-[10px] gold-text tracking-[0.2em] uppercase print:text-[10px]">CORE ADVANTAGES & COMMITMENT</p>
                 </div>
                 
-                <!-- 打印时：强制将网格布局变为1列（垂直排列） -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 print:grid-cols-1 print:gap-4">
-                    <div class="gold-border p-5 rounded-xl bg-[#080c14] space-y-2 print:p-4 print:space-y-1.5">
-                        <h4 class="font-bold text-white text-[13px] gold-text print:text-sm">定制化流程彩排策划</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed print:text-[11px]">深入参与主办方的前期筹备与彩排演练，提前规避突发风险，确保环节与视听效果无缝衔接。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 print:grid-cols-1 print:gap-4 print:w-[88%] print:mx-auto">
+                    <div class="gold-border p-5 rounded-xl bg-[#080c14] space-y-2 print:p-5 print:space-y-2">
+                        <h4 class="font-bold text-white text-[13px] gold-text print:text-[15px]">定制化流程彩排策划</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed print:text-xs">深入参与主办方的前期筹备与彩排演练，提前规避突发风险，确保环节与视听效果无缝衔接。</p>
                     </div>
-                    <div class="gold-border p-5 rounded-xl bg-[#080c14] space-y-2 print:p-4 print:space-y-1.5">
-                        <h4 class="font-bold text-white text-[13px] gold-text print:text-sm">全案资源与跨界协同</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed print:text-[11px]">依托行业深厚人脉，高效对接优质灯光、音响、演艺及媒体资源，提供一站式高品质舞台方案。</p>
+                    <div class="gold-border p-5 rounded-xl bg-[#080c14] space-y-2 print:p-5 print:space-y-2">
+                        <h4 class="font-bold text-white text-[13px] gold-text print:text-[15px]">全案资源与跨界协同</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed print:text-xs">依托行业深厚人脉，高效对接优质灯光、音响、演艺及媒体资源，提供一站式高品质舞台方案。</p>
                     </div>
                 </div>
             </section>
@@ -263,16 +258,22 @@
         </div>
 
         <!-- ==================== 打印第 4 页及后续：活动实况案例集 ==================== -->
-        <!-- 打印时隐藏总标题，保持页面纯净无干扰 -->
+        
+        <!-- 网页端总标题 -->
         <div class="text-center space-y-1 pt-4 print:hidden">
             <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">活动实况案例</h2>
             <p class="text-xs gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
         </div>
 
         <!-- 案例 1：奥迪汽车发布 -->
-        <div id="case-auto" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
+        <div id="case-auto" class="print-page-center print:justify-start print:pt-10">
+            <!-- 打印专属标题：仅在 PDF 每个案例页呈现 -->
+            <div class="text-center space-y-1 hidden print:block print:w-full print:mb-8">
+                <h2 class="text-2xl font-bold text-white tracking-wide">活动实况案例</h2>
+                <p class="text-[10px] gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
+            </div>
             
-            <div class="print-page-center">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 print:flex print:flex-col print:items-center print:gap-8">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -294,9 +295,7 @@
                         <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人视角</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -319,13 +318,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- 案例 2：企业盛典与开业 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
+        <div class="print-page-center print:justify-start print:pt-10">
+            <div class="text-center space-y-1 hidden print:block print:w-full print:mb-8">
+                <h2 class="text-2xl font-bold text-white tracking-wide">活动实况案例</h2>
+                <p class="text-[10px] gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
+            </div>
             
-            <div class="print-page-center">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 print:flex print:flex-col print:items-center print:gap-8">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -347,9 +349,7 @@
                         <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人视角</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -372,13 +372,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- 案例 3：圣诞晚宴 -->
-        <div id="case-gala" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
+        <div id="case-gala" class="print-page-center print:justify-start print:pt-10">
+            <div class="text-center space-y-1 hidden print:block print:w-full print:mb-8">
+                <h2 class="text-2xl font-bold text-white tracking-wide">活动实况案例</h2>
+                <p class="text-[10px] gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
+            </div>
             
-            <div class="print-page-center">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 print:flex print:flex-col print:items-center print:gap-8">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -400,9 +403,7 @@
                         <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人视角</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -425,13 +426,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- 案例 4：政企培训 -->
-        <div id="case-talk" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
+        <div id="case-talk" class="print-page-center print:justify-start print:pt-10">
+            <div class="text-center space-y-1 hidden print:block print:w-full print:mb-8">
+                <h2 class="text-2xl font-bold text-white tracking-wide">活动实况案例</h2>
+                <p class="text-[10px] gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
+            </div>
             
-            <div class="print-page-center">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 print:flex print:flex-col print:items-center print:gap-8">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -453,9 +457,7 @@
                         <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人视角</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -478,17 +480,20 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- 案例 5：文旅品牌节庆 -->
-        <div id="case-cultural" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
+        <div id="case-cultural" class="print-page-center print:justify-start print:pt-10">
+            <div class="text-center space-y-1 hidden print:block print:w-full print:mb-8">
+                <h2 class="text-2xl font-bold text-white tracking-wide">活动实况案例</h2>
+                <p class="text-[10px] gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
+            </div>
             
-            <div class="print-page-center">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 print:flex print:flex-col print:items-center print:gap-8">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
-                            <img src="event5.jpg" alt="文旅品牌活动 - 主持人特写" class="w-full h-full object-cover">
+                            <img src="event5.jpg" alt="文旅品牌活动 - 主持特写" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6 space-y-4">
                             <div>
@@ -506,9 +511,7 @@
                         <span class="text-[10px] gold-badge px-2.5 py-1 rounded-full inline-block">📷 主持人视角</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
@@ -531,24 +534,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <!-- ==================== 最后一页：尾页与联系方式（独立一页） ==================== -->
+        <!-- ==================== 最后一页：尾页与联系方式 ==================== -->
         <div class="print-page-center print-page-last">
             <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-[#0d1527] via-[#101b31] to-[#14223d] shadow-2xl text-center space-y-6 relative overflow-hidden print:p-12">
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none"></div>
                 
                 <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide relative z-10">期待与您共筑精彩舞台</h2>
                 
-                <!-- 移除 whitespace-nowrap 限制，并添加合适的最大宽度，让文字自然优雅地换行 -->
                 <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed relative z-10">
                     以卓越专业的艺术姿态把控盛典全场，用动人心弦的声线与多元演艺点亮每一个高光时刻。
                 </p>
                 
                 <div class="pt-6 border-t border-amber-500/20 max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 print:flex print:flex-col print:items-center print:gap-10 items-center text-left relative z-10 print:pt-10 print:w-full">
                     
-                    <!-- 左侧块：在打印时去除边框，强制变为垂直 Flex -->
                     <div class="md:border-r md:border-amber-500/20 md:pr-8 py-2 space-y-4 text-center md:text-left print:border-none print:pr-0 print:py-0 print:w-full print:flex print:flex-col print:items-center print:gap-10 print:space-y-0">
                         
                         <div class="print:flex print:flex-col print:items-center">
@@ -565,7 +565,6 @@
                         
                     </div>
                     
-                    <!-- 右侧块：在打印时强制变为垂直 Flex -->
                     <div class="space-y-4 text-center md:text-left md:pl-2 print:pl-0 print:w-full print:flex print:flex-col print:items-center print:gap-10 print:space-y-0">
                         
                         <div class="print:flex print:flex-col print:items-center">
