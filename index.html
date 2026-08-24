@@ -28,9 +28,27 @@
             background: rgba(212, 175, 55, 0.25);
             transform: translateY(-2px);
         }
+        /* 打印优化样式：确保打印时背景色和样式完美呈现 */
+        @media print {
+            body {
+                background-color: #080c14 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
     </style>
 </head>
-<body class="py-12 px-4 sm:px-6 lg:px-8">
+<body class="py-12 px-4 sm:px-6 lg:px-8 relative">
+
+    <!-- 悬浮 PDF 打印/下载按钮（不希望在PDF中显示时可忽略） -->
+    <div class="no-print fixed top-6 right-6 z-50">
+        <button onclick="window.print()" class="gold-badge px-4 py-2 rounded-full text-xs font-semibold shadow-lg flex items-center gap-1.5 cursor-pointer bg-[#0d1527]">
+            <span>🖨️ 保存/打印为PDF</span>
+        </button>
+    </div>
 
     <div class="max-w-4xl mx-auto space-y-16">
 
