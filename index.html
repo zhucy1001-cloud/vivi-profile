@@ -29,11 +29,11 @@
             transform: translateY(-2px);
         }
 
-        /* ==================== 专属 PDF 输出分页与居中控制 ==================== */
+        /* ==================== 专属 PDF 输出分页与高级留白控制 ==================== */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 8mm; /* 稍微减小物理边距，留出安全区 */
+                margin: 12mm; /* 加大物理安全边距，确保边框绝对不会被切掉 */
             }
             body {
                 background-color: #080c14 !important;
@@ -46,32 +46,37 @@
                 display: none !important;
             }
             
+            /* 强制模块独占一页并完美垂直+水平居中的核心类 */
             .print-page-center {
                 page-break-after: always;
                 break-after: page;
-                min-height: 90vh;
+                min-height: 90vh; /* 限制最大高度，防止撑破产生空白页 */
                 display: flex !important;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 margin: 0 !important;
-                padding: 0 !important;
+                padding: 3% 0 !important; /* 上下增加轻微留白，防止上下顶边 */
                 box-sizing: border-box;
             }
 
+            /* 消除最后一页的强制分页，避免文档末尾多出一张空白页 */
             .print-page-last {
                 page-break-after: auto !important;
                 break-after: auto !important;
             }
             
+            /* 核心修复：大幅度增加左右呼吸感留白，彻底解决顶边问题 */
             .print-section {
-                width: 100% !important;
+                width: 90% !important; /* 收缩至90%，留出完美的高级黑边 */
+                margin: 0 auto !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
 
+            /* 针对实况案例框：进一步缩小，使图文更聚拢精致 */
             .print-case-card {
-                width: 85% !important;
+                width: 82% !important;
                 margin: 0 auto !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
@@ -94,7 +99,7 @@
         <!-- ==================== 打印第 1 页：封面定位（自适应竖版海报） ==================== -->
         <div class="print-page-center">
             <!-- 打印时：高度拉长、垂直居中、间距拉大以适应A4竖版 -->
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8 print:flex print:flex-col print:justify-center print:min-h-[85vh] print:space-y-12">
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8 print:flex print:flex-col print:justify-center print:min-h-[80vh] print:space-y-12">
                 
                 <div class="space-y-3 print:space-y-6">
                     <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
