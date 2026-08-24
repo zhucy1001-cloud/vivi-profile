@@ -33,50 +33,52 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 12mm; /* 加大物理安全边距，确保边框绝对不会被切掉 */
+                margin: 0 !important; /* 彻底清除浏览器默认白边，接管绝对排版权 */
             }
             body {
                 background-color: #080c14 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                padding: 0 !important;
-                margin: 0 !important;
             }
             .no-print {
                 display: none !important;
             }
             
-            /* 强制模块独占一页并完美垂直+水平居中的核心类 */
+            /* 强制模块独占一页并留出绝对安全边距，彻底拒绝顶边 */
             .print-page-center {
+                width: 100% !important;
+                height: 100vh !important; /* 严格绑定一页纸的高度 */
+                padding: 15mm 20mm !important; /* 核心：创造上下15mm、左右20mm的物理安全留白区 */
+                box-sizing: border-box !important;
+                
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                
                 page-break-after: always;
                 break-after: page;
-                min-height: 90vh; /* 限制最大高度，防止撑破产生空白页 */
-                display: flex !important;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin: 0 !important;
-                padding: 3% 0 !important; /* 上下增加轻微留白，防止上下顶边 */
-                box-sizing: border-box;
+                overflow: hidden;
             }
 
-            /* 消除最后一页的强制分页，避免文档末尾多出一张空白页 */
+            /* 消除最后一页的多余空白页 */
             .print-page-last {
                 page-break-after: auto !important;
                 break-after: auto !important;
             }
             
-            /* 核心修复：大幅度增加左右呼吸感留白，彻底解决顶边问题 */
+            /* 让内容框自适应填充内部安全区 */
             .print-section {
-                width: 90% !important; /* 收缩至90%，留出完美的高级黑边 */
-                margin: 0 auto !important;
+                width: 100% !important;
+                margin: 0 !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
 
-            /* 针对实况案例框：进一步缩小，使图文更聚拢精致 */
+            /* 针对实况案例框：设置优雅的缩放比例，使其在A4纸中心显得高级不臃肿 */
             .print-case-card {
-                width: 82% !important;
+                width: 100% !important;
+                max-width: 90% !important;
                 margin: 0 auto !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
@@ -84,7 +86,7 @@
         }
     </style>
 </head>
-<body class="py-12 px-4 sm:px-6 lg:px-8 relative">
+<body class="py-12 px-4 sm:px-6 lg:px-8 relative print:p-0 print:m-0">
 
     <!-- 悬浮 PDF 打印/下载按钮（打印时自动隐藏） -->
     <div class="no-print fixed top-6 right-6 z-50">
@@ -93,13 +95,13 @@
         </button>
     </div>
 
-    <!-- 网页主容器（打印时取消板块间的默认高间距） -->
-    <div class="max-w-4xl mx-auto space-y-16 print:space-y-0">
+    <!-- 网页主容器（打印时取消板块间的默认高间距，交给分页控制） -->
+    <div class="max-w-4xl mx-auto space-y-16 print:space-y-0 print:max-w-none">
 
         <!-- ==================== 打印第 1 页：封面定位（自适应竖版海报） ==================== -->
         <div class="print-page-center">
-            <!-- 打印时：高度拉长、垂直居中、间距拉大以适应A4竖版 -->
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8 print:flex print:flex-col print:justify-center print:min-h-[80vh] print:space-y-12">
+            <!-- 打印时：高度拉长填满安全区，呈现海报级留白 -->
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8 print:flex print:flex-col print:justify-center print:h-full print:space-y-12 print:p-12">
                 
                 <div class="space-y-3 print:space-y-6">
                     <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
@@ -115,7 +117,7 @@
                     以天籁之声诠释品牌底蕴 · 以大师风范掌控千人盛典 · 以多元美学点亮璀璨舞台
                 </p>
 
-                <!-- 打印时：标签从横向两排强制改为垂直一列，并放大字号与间距 -->
+                <!-- 打印时：标签从横向强制变为纵向阵列 -->
                 <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1 print:w-full print:max-w-xs print:gap-4 print:pt-6">
                     <div class="flex flex-wrap justify-center gap-2 print:flex-col print:w-full print:gap-4">
                         <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer print:py-3 print:text-sm">商务峰会 Executive Summit</a>
@@ -141,9 +143,9 @@
             </section>
         </div>
 
-        <!-- ==================== 打印第 2 页：主持人概览与特长 ==================== -->
+        <!-- ==================== 打印第 2 页：主持人概览与4大特长 ==================== -->
         <div class="print-page-center">
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10 print:p-10 print:space-y-8">
                 <div class="text-center space-y-1">
                     <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">主持人概览</h2>
                     <p class="text-xs gold-text tracking-[0.2em] uppercase">HOST PROFILE & METRICS</p>
@@ -207,11 +209,11 @@
             </section>
         </div>
 
-        <!-- ==================== 打印第 3 页：演艺特长 + 核心承诺 ==================== -->
-        <div class="print-page-center space-y-8 print:space-y-8">
+        <!-- ==================== 打印第 3 页：多元演艺特长 + 核心承诺 ==================== -->
+        <div class="print-page-center print:space-y-8">
             
             <!-- 第 3 部分：多元演艺特长 -->
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10 print:p-10 print:space-y-8">
                 <div class="text-center space-y-1">
                     <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">多元演艺特长</h2>
                     <p class="text-xs gold-text tracking-[0.2em] uppercase">VERSATILE TALENTS & PERFORMANCE</p>
@@ -237,7 +239,7 @@
             </section>
 
             <!-- 补充板块：核心优势与服务承诺 -->
-            <section class="print-section gold-border rounded-2xl p-6 sm:p-8 bg-[#0a101d] shadow-xl space-y-6">
+            <section class="print-section gold-border rounded-2xl p-6 sm:p-8 bg-[#0a101d] shadow-xl space-y-6 print:p-8">
                 <div class="text-center space-y-1">
                     <h3 class="text-lg sm:text-xl font-bold text-white tracking-wide">核心优势与服务承诺</h3>
                     <p class="text-[10px] gold-text tracking-[0.2em] uppercase">CORE ADVANTAGES & COMMITMENT</p>
@@ -258,7 +260,7 @@
         </div>
 
         <!-- ==================== 打印第 4 页及后续：活动实况案例集 ==================== -->
-        <!-- 打印时隐藏总标题，保持页面纯净 -->
+        <!-- 打印时隐藏总标题，保持案例页面纯净无干扰 -->
         <div class="text-center space-y-1 pt-4 print:hidden">
             <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">活动实况案例</h2>
             <p class="text-xs gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
@@ -267,6 +269,7 @@
         <!-- 案例 1：奥迪汽车发布 -->
         <div id="case-auto" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
             
+            <!-- 每个框独立霸占一页并居中 -->
             <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
@@ -291,6 +294,7 @@
                 </div>
             </div>
 
+            <!-- 每个框独立霸占一页并居中 -->
             <div class="print-page-center">
                 <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
@@ -531,7 +535,7 @@
 
         <!-- ==================== 最后一页：尾页与联系方式（独立一页） ==================== -->
         <div class="print-page-center print-page-last">
-            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-[#0d1527] via-[#101b31] to-[#14223d] shadow-2xl text-center space-y-6 relative overflow-hidden">
+            <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-[#0d1527] via-[#101b31] to-[#14223d] shadow-2xl text-center space-y-6 relative overflow-hidden print:p-12">
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none"></div>
                 
                 <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide relative z-10">期待与您共筑精彩舞台</h2>
