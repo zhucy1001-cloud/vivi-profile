@@ -33,12 +33,15 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 10mm; /* 舒适的打印白边 */
+                margin: 8mm; /* 稍微减小物理边距，留出安全区 */
             }
             body {
                 background-color: #080c14 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+                /* 关键修复：清除网页模式下的上下边距，防止高度溢出产生空白页 */
+                padding: 0 !important;
+                margin: 0 !important;
             }
             .no-print {
                 display: none !important;
@@ -48,24 +51,36 @@
             .print-page-center {
                 page-break-after: always;
                 break-after: page;
-                min-height: 96vh;
+                /* 关键修复：高度从96vh降至90vh，确保加上边框后绝对不会超出单页 */
+                min-height: 90vh;
                 display: flex !important;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 margin: 0 !important;
                 padding: 0 !important;
+                box-sizing: border-box;
+            }
+
+            /* 消除最后一页的强制分页，避免文档末尾多出一张空白页 */
+            .print-page-last {
+                page-break-after: auto !important;
+                break-after: auto !important;
             }
             
-            /* 确保常规板块占满可用宽度 */
+            /* 确保常规板块占满可用宽度并防止内部断层 */
             .print-section {
                 width: 100% !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
 
             /* 针对实况案例框：缩小宽度使其在A4纸上更显精致，且完美居中 */
             .print-case-card {
                 width: 85% !important;
                 margin: 0 auto !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
         }
     </style>
@@ -165,7 +180,7 @@
                     </div>
                 </div>
 
-                <!-- 4大特长卡片 (保留在此处) -->
+                <!-- 4大特长卡片 -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-800">
                     <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2">
                         <h4 class="font-bold text-white text-sm gold-text">殿堂台风与非凡气场</h4>
@@ -245,11 +260,10 @@
         </div>
 
         <!-- 案例 1：奥迪汽车发布 -->
-        <!-- 网页端为双列 Grid，打印端断开 Grid 限制，让内部模块独立撑满居中 -->
         <div id="case-auto" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
             
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event1.jpg" alt="奥迪汽车品牌发布 - 主持特写" class="w-full h-full object-cover">
@@ -273,7 +287,7 @@
             </div>
 
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event1现场.jpg" alt="奥迪汽车品牌发布 - 活动全景" class="w-full h-full object-cover">
@@ -302,7 +316,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
             
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event2.jpg" alt="企业盛典与开业 - 主持人特写" class="w-full h-full object-cover">
@@ -326,7 +340,7 @@
             </div>
 
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event2现场.jpg" alt="企业盛典与开业 - 活动全景" class="w-full h-full object-cover">
@@ -355,7 +369,7 @@
         <div id="case-gala" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
             
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event3.jpg" alt="圣诞主题盛宴 - 主持人特写" class="w-full h-full object-cover">
@@ -379,7 +393,7 @@
             </div>
 
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event3现场.jpg" alt="圣诞主题盛宴 - 活动全景" class="w-full h-full object-cover">
@@ -408,7 +422,7 @@
         <div id="case-talk" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
             
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event4.jpg" alt="政企培训 - 主持人特写" class="w-full h-full object-cover">
@@ -432,7 +446,7 @@
             </div>
 
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event4现场.jpg" alt="政企培训 - 活动全景" class="w-full h-full object-cover">
@@ -461,7 +475,7 @@
         <div id="case-cultural" class="grid grid-cols-1 md:grid-cols-2 gap-8 print:block print:space-y-0">
             
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event5.jpg" alt="文旅品牌活动 - 主持人特写" class="w-full h-full object-cover">
@@ -485,7 +499,7 @@
             </div>
 
             <div class="print-page-center">
-                <div class="print-case-card w-full gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
+                <div class="print-case-card gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between">
                     <div>
                         <div class="w-full aspect-[4/3] bg-gray-900 overflow-hidden">
                             <img src="event5现场.jpg" alt="文旅品牌活动 - 活动全景" class="w-full h-full object-cover">
@@ -511,7 +525,7 @@
         </div>
 
         <!-- ==================== 最后一页：尾页与联系方式（独立一页） ==================== -->
-        <div class="print-page-center">
+        <div class="print-page-center print-page-last">
             <section class="print-section gold-border rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-[#0d1527] via-[#101b31] to-[#14223d] shadow-2xl text-center space-y-6 relative overflow-hidden">
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none"></div>
                 
