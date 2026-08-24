@@ -29,11 +29,11 @@
             transform: translateY(-2px);
         }
 
-        /* 专门针对 PDF 输出的底层打印优化，绝不影响网页观感 */
+        /* ==================== 专业打印与分页控制核心样式 ==================== */
         @media print {
             @page {
                 size: A4 portrait; /* 强制A4纵向 */
-                margin: 12mm 8mm;  /* 留出舒适的打印白边 */
+                margin: 10mm;
             }
             body {
                 background-color: #080c14 !important;
@@ -43,132 +43,127 @@
             .no-print {
                 display: none !important;
             }
+            /* 案例页面打印专属类：让两个框自动缩小宽度，并完美在页面中央上下居中 */
+            .print-case-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                min-height: 95vh !important;
+                width: 82% !important; /* 缩小框的宽度使其更加精致 */
+                margin: 0 auto !important; /* 左右居中 */
+                page-break-after: always;
+                break-after: page;
+            }
+            .print-case-wrapper.first-case {
+                min-height: 85vh !important; /* 为第一页的大标题留出空间 */
+            }
+            .print-case-wrapper > div {
+                width: 100% !important;
+                margin-bottom: 2rem !important; /* 两个框之间的上下间距 */
+            }
         }
     </style>
 </head>
 <body class="py-12 px-4 sm:px-6 lg:px-8 relative">
 
-    <!-- 悬浮 PDF 打印/下载按钮（打印时会自动隐藏） -->
+    <!-- 悬浮 PDF 打印/下载按钮 -->
     <div class="no-print fixed top-6 right-6 z-50">
         <button onclick="window.print()" class="gold-badge px-4 py-2 rounded-full text-xs font-semibold shadow-lg flex items-center gap-1.5 cursor-pointer bg-[#0d1527]">
-            <span>🖨️ 保存为PDF</span>
+            <span>🖨️ 输出为PDF</span>
         </button>
     </div>
 
-    <!-- 整个外层容器 -->
     <div class="max-w-4xl mx-auto space-y-16">
 
-        <!-- ==================== 打印第 1 页：封面与概览 ==================== -->
-        <div class="space-y-16 print:break-after-page print:pb-4">
+        <!-- ==================== 打印第 1 页：封面定位 + 主持人概览 ==================== -->
+        <div class="space-y-10 print:break-after-page print:pb-4">
             
             <!-- 第 1 部分：封面与总体定位 -->
-            <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl text-center space-y-8">
-                <div class="space-y-3">
-                    <div class="text-xs sm:text-sm tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
-                    <h1 class="text-2xl sm:text-5xl font-bold text-white tracking-wide leading-snug sm:leading-tight">
-                        资深商务主持人 <span class="gold-text">&</span><br class="sm:hidden"> 多维舞台演艺人
+            <section class="gold-border rounded-3xl p-6 sm:p-8 bg-[#0d1527] shadow-2xl text-center space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[10px] sm:text-xs tracking-[0.3em] gold-text uppercase font-semibold">EXECUTIVE PRESENTER & ARTIST</div>
+                    <h1 class="text-xl sm:text-3xl font-bold text-white tracking-wide leading-snug">
+                        资深商务主持人 <span class="gold-text">&</span> 多维舞台演艺人
                     </h1>
                 </div>
                 
-                <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto tracking-wide leading-relaxed">
+                <p class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
                     以天籁之声诠释品牌底蕴 · 以大师风范掌控千人盛典 · 以多元美学点亮璀璨舞台
                 </p>
 
-                <div class="max-w-xl mx-auto flex flex-col items-center gap-2.5 pt-1">
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <a href="#case-talk" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">商务峰会 Executive Summit</a>
-                        <a href="#case-auto" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">品牌发布 Brand Release</a>
-                        <a href="#case-gala" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">歌艺表演 Vocal Artist</a>
-                    </div>
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <a href="#case-wedding" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">婚礼主持 Wedding Gala</a>
-                        <a href="#case-cultural" class="px-3.5 py-1.5 rounded-full text-xs gold-badge inline-block cursor-pointer">文旅节庆 Cultural Tourism</a>
-                    </div>
+                <div class="max-w-lg mx-auto flex flex-wrap justify-center gap-1.5 pt-1">
+                    <a href="#case-talk" class="px-3 py-1 rounded-full text-[11px] gold-badge inline-block">商务峰会</a>
+                    <a href="#case-auto" class="px-3 py-1 rounded-full text-[11px] gold-badge inline-block">品牌发布</a>
+                    <a href="#case-gala" class="px-3 py-1 rounded-full text-[11px] gold-badge inline-block">歌艺表演</a>
+                    <a href="#case-wedding" class="px-3 py-1 rounded-full text-[11px] gold-badge inline-block">婚礼主持</a>
+                    <a href="#case-cultural" class="px-3 py-1 rounded-full text-[11px] gold-badge inline-block">文旅节庆</a>
                 </div>
 
-                <div class="pt-6 border-t border-gray-800/80 max-w-lg mx-auto grid grid-cols-2 gap-4 text-left text-sm">
+                <div class="pt-4 border-t border-gray-800/80 max-w-md mx-auto grid grid-cols-2 gap-4 text-left text-xs">
                     <div>
-                        <div class="text-xs gold-text uppercase tracking-wider">首席司仪 / CHIEF PRESENTER</div>
-                        <div class="text-white font-medium mt-1">Vivi (资深商务演艺司仪)</div>
+                        <div class="text-[10px] gold-text uppercase tracking-wider">首席司仪</div>
+                        <div class="text-white font-medium mt-0.5">Vivi (资深商务演艺司仪)</div>
                     </div>
                     <div>
-                        <div class="text-xs gold-text uppercase tracking-wider">核心领域 / CORE SPECTRUM</div>
+                        <div class="text-[10px] gold-text uppercase tracking-wider">核心领域</div>
                         <div class="text-white font-medium mt-1">高端商务 / 殿堂晚宴 / 艺术演艺</div>
                     </div>
                 </div>
             </section>
 
             <!-- 第 2 部分：主持人概览与核心指标 -->
-            <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
-                <div class="text-center space-y-1">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">主持人概览</h2>
-                    <p class="text-xs gold-text tracking-[0.2em] uppercase">HOST PROFILE & METRICS</p>
+            <section class="gold-border rounded-3xl p-6 sm:p-8 bg-[#0d1527] shadow-2xl space-y-6">
+                <div class="text-center space-y-0.5">
+                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-wide">主持人概览</h2>
+                    <p class="text-[10px] gold-text tracking-[0.2em] uppercase">HOST PROFILE & METRICS</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                    <div class="md:col-span-7 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-7 space-y-4">
                         <div>
-                            <span class="text-xl font-bold text-white">Vivi</span>
-                            <span class="text-xs gold-text uppercase ml-2 px-2.5 py-1 rounded gold-badge">资深商务主持人 / 多维演艺人</span>
+                            <span class="text-lg font-bold text-white">Vivi</span>
+                            <span class="text-[10px] gold-text uppercase ml-2 px-2 py-0.5 rounded gold-badge">资深商务主持人 / 多维演艺人</span>
                         </div>
-                        <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
-                            深耕高端主持与舞台艺术多年，具备175cm优雅高挑的卓越台风与张弛有度的表现力。她将沉稳从容的控场智慧、大气温润的声线艺术与深厚卓越的歌艺功底完美交融，凭借敏锐的临场应变与极致的细节把控，赋予每一场重量级盛典独一无二的品牌灵魂与艺术价值。
+                        <!-- ⚠️ 经过精简提炼的文案，刚好省出一行空间 -->
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                            深耕高端主持与演艺领域，具备175cm优雅高挑的卓越台风。将从容大气的控场智慧与深厚的声乐演艺功底完美交融，凭借敏锐的临场应变与极致的细节把控，赋予每场重量级盛典独一无二的品牌灵魂与艺术价值。
                         </p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
-                                <div class="text-2xl font-bold gold-text">175cm</div>
-                                <div class="text-xs text-gray-400 mt-1">身姿气场 Height</div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="gold-border p-2.5 rounded-xl text-center bg-[#080c14]">
+                                <div class="text-base font-bold gold-text">175cm</div>
+                                <div class="text-[10px] text-gray-400 mt-0.5">身高</div>
                             </div>
-                            <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
-                                <div class="text-2xl font-bold gold-text">60kg</div>
-                                <div class="text-xs text-gray-400 mt-1">形体仪态 Weight</div>
+                            <div class="gold-border p-2.5 rounded-xl text-center bg-[#080c14]">
+                                <div class="text-base font-bold gold-text">60kg</div>
+                                <div class="text-[10px] text-gray-400 mt-0.5">体重</div>
                             </div>
-                            <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
-                                <div class="text-2xl font-bold gold-text">500+</div>
-                                <div class="text-xs text-gray-400 mt-1">品质场次 Events</div>
+                            <div class="gold-border p-2.5 rounded-xl text-center bg-[#080c14]">
+                                <div class="text-base font-bold gold-text">500+</div>
+                                <div class="text-[10px] text-gray-400 mt-0.5">场次</div>
                             </div>
-                            <div class="gold-border p-4 rounded-2xl text-center bg-[#080c14]">
-                                <div class="text-2xl font-bold gold-text">99.8%</div>
-                                <div class="text-xs text-gray-400 mt-1">美誉好评 Satisfaction</div>
+                            <div class="gold-border p-2.5 rounded-xl text-center bg-[#080c14]">
+                                <div class="text-base font-bold gold-text">99.8%</div>
+                                <div class="text-[10px] text-gray-400 mt-0.5">满意度</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="md:col-span-5 flex justify-center">
-                        <div class="w-full max-w-[280px] h-[380px] sm:h-[420px] rounded-2xl overflow-hidden gold-border shadow-2xl bg-[#080c14] p-2">
+                        <div class="w-full max-w-[200px] h-[260px] sm:h-[280px] rounded-2xl overflow-hidden gold-border shadow-2xl bg-[#080c14] p-1.5">
                             <img src="avatar.jpg" alt="Vivi 主持人正装照" class="w-full h-full object-cover rounded-xl object-top">
                         </div>
                     </div>
                 </div>
-
-                <!-- 4大特长卡片 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-800">
-                    <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2 print:break-inside-avoid">
-                        <h4 class="font-bold text-white text-sm gold-text">殿堂台风与非凡气场</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">175cm优雅仪态与磁性大气之音交织，轻松驾驭千人宏大盛典</p>
-                    </div>
-                    <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2 print:break-inside-avoid">
-                        <h4 class="font-bold text-white text-sm gold-text">声艺双绝多维演艺</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">兼具专业级声乐造诣与主持功底，可担纲重磅压轴献唱与艺术特邀</p>
-                    </div>
-                    <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2 print:break-inside-avoid">
-                        <h4 class="font-bold text-white text-sm gold-text">大师风范从容控场</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">卓越的临场应变造诣与氛围调度能力，确保活动流程尊贵无瑕</p>
-                    </div>
-                    <div class="gold-border p-5 rounded-2xl bg-[#080c14] space-y-2 print:break-inside-avoid">
-                        <h4 class="font-bold text-white text-sm gold-text">定制美学文案撰写</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">深度解码品牌精神，量身撰写高雅流利的主持华章与深度访谈</p>
-                    </div>
-                </div>
             </section>
+
         </div>
 
+        <!-- ==================== 打印第 2 页：多元演艺特长 + 降级缩小的核心承诺 ==================== -->
+        <div class="space-y-8 print:break-after-page print:pt-4">
 
-        <!-- ==================== 打印第 2 页：演艺特长与核心承诺 ==================== -->
-        <div class="space-y-16 print:break-after-page print:pt-4">
-            
-            <!-- 第 3 部分：多元演艺特长 -->
-            <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
+            <!-- 第 3 部分：多元演艺特长 (保持大气) -->
+            <section class="gold-border rounded-3xl p-8 sm:p-10 bg-[#0d1527] shadow-2xl space-y-8">
                 <div class="text-center space-y-1">
                     <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">多元演艺特长</h2>
                     <p class="text-xs gold-text tracking-[0.2em] uppercase">VERSATILE TALENTS & PERFORMANCE</p>
@@ -193,21 +188,21 @@
                 </div>
             </section>
 
-            <!-- 新增板块：核心优势与服务承诺 -->
-            <section class="gold-border rounded-3xl p-8 sm:p-12 bg-[#0d1527] shadow-2xl space-y-10">
+            <!-- 补充板块：核心优势与服务承诺 (整体缩小，视觉层级降低) -->
+            <section class="gold-border rounded-2xl p-6 sm:p-8 bg-[#0a101d] shadow-xl space-y-6">
                 <div class="text-center space-y-1">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">核心优势与服务承诺</h2>
-                    <p class="text-xs gold-text tracking-[0.2em] uppercase">CORE ADVANTAGES & COMMITMENT</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-white tracking-wide">核心优势与服务承诺</h3>
+                    <p class="text-[10px] gold-text tracking-[0.2em] uppercase">CORE ADVANTAGES & COMMITMENT</p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:break-inside-avoid">
-                        <h4 class="font-bold text-white text-base gold-text">定制化流程彩排策划</h4>
-                        <p class="text-sm text-gray-300 leading-relaxed">深入参与主办方的每一次前期筹备与彩排演练，提前预判并规避突发风险，确保活动每一个环节与视听效果达到无缝衔接的完美状态。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="gold-border p-5 rounded-xl bg-[#080c14] space-y-2 print:break-inside-avoid">
+                        <h4 class="font-bold text-white text-[13px] gold-text">定制化流程彩排策划</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">深入参与主办方的前期筹备与彩排演练，提前规避突发风险，确保环节与视听效果无缝衔接。</p>
                     </div>
-                    <div class="gold-border p-6 rounded-2xl bg-[#080c14] space-y-3 print:break-inside-avoid">
-                        <h4 class="font-bold text-white text-base gold-text">全案资源与跨界协同</h4>
-                        <p class="text-sm text-gray-300 leading-relaxed">依托多年累积的深厚行业经验与人脉，可协助主办方高效对接优质的灯光、音响、演艺及媒体资源，提供一站式高品质舞台解决方案。</p>
+                    <div class="gold-border p-5 rounded-xl bg-[#080c14] space-y-2 print:break-inside-avoid">
+                        <h4 class="font-bold text-white text-[13px] gold-text">全案资源与跨界协同</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">依托行业深厚人脉，高效对接优质灯光、音响、演艺及媒体资源，提供一站式高品质舞台方案。</p>
                     </div>
                 </div>
             </section>
@@ -215,16 +210,15 @@
         </div>
 
         <!-- ==================== 打印第 3 页及后续：活动实况案例集 ==================== -->
-        <!-- 注意：网页端是两列（md:grid-cols-2），打印端自动变成单列上下分布（print:grid-cols-1），且保证每个案例占据一整页 -->
         
-        <!-- 案例区统一标题 (仅在网页和案例第一页显示) -->
-        <div class="text-center space-y-1 pt-4 print:pb-4">
+        <!-- 案例总标题 -->
+        <div class="text-center space-y-1 pt-4 print:pt-0">
             <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">活动实况案例</h2>
             <p class="text-xs gold-text tracking-[0.2em] uppercase">STAGE GALLERY & SCENARIOS</p>
         </div>
 
-        <!-- 案例 1：奥迪汽车发布 (占据一页) -->
-        <div id="case-auto" class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-1 gap-8 print:break-after-page">
+        <!-- 案例 1：奥迪汽车发布 (附带 first-case 类，给总标题留空间) -->
+        <div id="case-auto" class="grid grid-cols-1 md:grid-cols-2 gap-8 print-case-wrapper first-case">
             
             <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between print:break-inside-avoid">
                 <div>
@@ -273,8 +267,8 @@
 
         </div>
 
-        <!-- 案例 2：企业盛典与开业 (占据一页) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-1 gap-8 print:break-after-page print:pt-4">
+        <!-- 案例 2：企业盛典与开业 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 print-case-wrapper">
             
             <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between print:break-inside-avoid">
                 <div>
@@ -323,8 +317,8 @@
 
         </div>
 
-        <!-- 案例 3：圣诞晚宴 (占据一页) -->
-        <div id="case-gala" class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-1 gap-8 print:break-after-page print:pt-4">
+        <!-- 案例 3：圣诞晚宴 -->
+        <div id="case-gala" class="grid grid-cols-1 md:grid-cols-2 gap-8 print-case-wrapper">
             
             <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between print:break-inside-avoid">
                 <div>
@@ -373,8 +367,8 @@
 
         </div>
 
-        <!-- 案例 4：政企培训 (占据一页) -->
-        <div id="case-talk" class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-1 gap-8 print:break-after-page print:pt-4">
+        <!-- 案例 4：政企培训 -->
+        <div id="case-talk" class="grid grid-cols-1 md:grid-cols-2 gap-8 print-case-wrapper">
             
             <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between print:break-inside-avoid">
                 <div>
@@ -423,8 +417,8 @@
 
         </div>
 
-        <!-- 案例 5：文旅品牌节庆 (占据一页) -->
-        <div id="case-cultural" class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-1 gap-8 print:break-after-page print:pt-4">
+        <!-- 案例 5：文旅品牌节庆 -->
+        <div id="case-cultural" class="grid grid-cols-1 md:grid-cols-2 gap-8 print-case-wrapper">
             
             <div class="gold-border rounded-2xl overflow-hidden bg-[#080c14] flex flex-col justify-between print:break-inside-avoid">
                 <div>
